@@ -1,0 +1,15 @@
+<br/><h3>Edit leave</h3><br/>
+<%= error_messages_for 'leave'  %>
+<% form_for( @leave, :url=> leafe_path( @leave ), :method => :put, :builder => BbFormBuilder ) do |form| %> 
+  <table  width="100%" border="0" >
+    <tr>
+      <td>
+        <%= render :partial => 'form', :locals =>{ :new => false }%>
+      </td>
+    </tr>
+  </table>
+  <div>
+    <div class="greenbut" style="margin-left:0px;"><%= submit_tag 'Save', :class => "greensubbut"%></div>
+    <div class="greenbut" style="margin-left:20px;"><%= link_to 'Back', leaves_path %></div>	
+  </div>
+<% end %>

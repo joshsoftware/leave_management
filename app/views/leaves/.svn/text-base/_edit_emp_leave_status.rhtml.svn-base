@@ -1,0 +1,13 @@
+<%if  flash[:notice]%><p style="color: green"><div id="flash"><%= flash[:notice] %></div></p><%= flash[:notice] = nil %><%end%>
+<table>
+    <tr><td>Year  </td><td> 
+    <%= select_tag  "status_year", options_for_select([ "2007","2008","2009","2010","2011" ], "#{session[:current_year]}"), :style=>"width:75px" ,:onchange=>"#{remote_function :url => {:controller => 'leaves',:action => 'change_year'},:with => "'status_year=' + value" }" %>                           
+    <tr><td>Total Privilege Leave  </td><td> <%=text_field 'employee_leave_status', 'total_privilege'  %></td></tr>
+    <tr><td>Total Casual Leave  </td><td>  <%=text_field 'employee_leave_status', 'total_casual'  %></td></tr>
+    <tr><td>Total Sick Leave  </td><td>  <%= text_field 'employee_leave_status', 'total_sick'  %></td></tr>
+    <tr><td>Remaining Privilege Leave  </td><td>  <%= text_field 'employee_leave_status', 'remain_privilege' %></td></tr>
+    <tr><td>Remaining Casual Leave </td><td>  <%= text_field 'employee_leave_status', 'remain_casual' %></td></tr>
+    <tr><td>Remaining Sick Leave </td><td>  <%= text_field 'employee_leave_status', 'remain_sick' %>     
+</table>
+
+ 

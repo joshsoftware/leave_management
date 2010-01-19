@@ -1,0 +1,24 @@
+<%= error_messages_for 'employee_leave_status' %>
+
+<h3>Add leave status </h3> 
+<% form_for @employee_leave_status, :url =>  create_emp_leave_status_leaves_path, :method => :post do |form| %>
+  <table  width="100%" border="0" >
+    <tr>
+      <td>    
+        <div id="change_year">
+          <table>
+            <tr>
+              <td>Employee</td>
+              <td><%= form.select :employee_id, Employee.all.collect { |e| [e.first_name + ' ' + e.last_name, e.id] } ,{}, :style => "width:208px; border:1px solid #a1a0a0;" %></td>
+            </tr> 
+            <%= render :partial =>"edit_emp_leave_status"%>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div>
+    <div class="greenbut" style="margin-left:0px;"><%= submit_tag 'Save', :class => "greensubbut"%></div>
+    <div class="greenbut" style="margin-left:20px;"><%= link_to 'Back', emp_leave_status_leaves_path %></div>	
+  </div>
+<% end %>

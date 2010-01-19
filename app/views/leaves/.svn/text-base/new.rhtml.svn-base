@@ -1,0 +1,16 @@
+<h1 class="heading">Leave Form  </h1><hr>
+  <%= error_messages_for 'leave' %>
+ 
+ <table  width="100%" border="0" >
+ <% form_for(:leave, @leave, :url=>{:action=>'create'}, :html=>{:multipart=>true}) do |form| %> 
+<tr  >
+      <td >
+        <%= render :partial => 'form', :locals =>{ :new => true } %>
+      </td>
+</tr>
+<tr >
+      <td ><%= submit_tag "Create", :class=>"button1" %></td>
+      <td ><a href="javascript:history.go(-1)"><%= image_tag("back",:border=>0)%></a></td>
+</tr>
+<%end%>
+</table>

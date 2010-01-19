@@ -1,0 +1,56 @@
+<!--[form:employee]-->
+  <% fields_for  :leave, @leave do |form| %> 
+<table  width="100%" border="0" cellpadding="4" cellspan="2" >    
+
+<tr>
+    
+    <td colspan=2>
+        <fieldset>
+        <legend>Leave Details</legend>
+         <table>
+          <% if session[:rolename] == "admin" and  session[:department] != "Admin" %>          
+            <%= hidden_field 'leave', 'employee_id', :value=>session[:user_id] %>
+          <% elsif session[:rolename] != "admin" %>
+            <%= hidden_field 'leave', 'employee_id', :value=>session[:user_id] %>
+          <% end %>
+            <% if new %>
+            <tr><td>Leave Application Date </td><td> <%=text_field 'leave', 'date', :value => Time.now.strftime("%m/%d/%Y"), :size =>"20", :disabled=>"disabled"  %>  </td></tr>
+            <% else %>          
+            <tr><td>Leave Application Date </td><td> <%=text_field 'leave', 'date', :size =>"20", :value => @leave.date.strftime("%m/%d/%Y"), :disabled=>"disabled" %> </td></tr>
+            <% end %>
+            <tr><td>Leave Start Date </td><td>  <%=date_select 'leave', 'start_date_of_leave'  %> (mm/dd/yyyy) </td></tr>
+            <tr><td>Leave End Date </td><td>  <%=date_select 'leave', 'end_date_of_leave'  %> (mm/dd/yyyy) </td></tr>
+            <tr><td>No of Days </td><td>  <%= text_field 'leave', 'no_of_days','size'=>'10' %></td></tr>
+            <tr><td>Reason of Leave </td><td>  <%= text_field 'leave', 'reason_of_leave','size'=>'27' %></td></tr>
+            <tr><td>Type Of leave </td>
+             <td> <table><tr>
+            <td><%= radio_button 'leave', 'type_of_leave', 'casual' %></td><td> Casual </td><td> <%= radio_button 'leave','type_of_leave', 'privilege' %> </td><td>Privilege </td><td><%= radio_button 'leave', 'type_of_leave','sick' %></td><td> Sick </td>
+            </tr></table>
+            </td></tr>
+            <% if new%>
+              <tr><td>Contact Tel. no  </td><td> <%= text_field 'leave', 'contact_no',:value =>@employee.contact,'size'=>'27' %></td></tr>
+              <tr><td>Address while on Leave </td><td>  <%= text_area 'leave', 'address', :value =>@employee.address,:size => "35x7" %></td></tr>
+            <% else %>
+              <tr><td>Contact Tel. no  </td><td> <%= text_field 'leave', 'contact_no','size'=>'27' %></td></tr>
+              <tr><td>Address while on Leave </td><td>  <%= text_area 'leave', 'address',:size => "35x7" %></td></tr>
+            <% end %>
+            <% if session[:rolename] == "admin" and session[:department] == "Admin" %>
+              <tr><td>Status </td>
+               <td>
+                <%= radio_button_tag 'status', 'Pending', :checked =>"checked" %> Pending 
+                <%= radio_button_tag 'status', 'Approved' %> Approved
+                <%= radio_button_tag 'status', 'Rejected' %> Rejected
+               </td>            
+              </tr>            
+          <% end %>
+        </table>
+        <b>Important Note:</b><br/>
+        <%= $important_note %>
+     </fieldset>
+    </td>
+    
+</tr>
+</table>
+
+<%end%>
+<!--[eoform:employee]-->

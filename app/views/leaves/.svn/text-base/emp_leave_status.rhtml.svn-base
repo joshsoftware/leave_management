@@ -1,0 +1,7 @@
+<div><h1 class="heading">Employees Leaves Status
+<%= select_tag  "status_year", options_for_select([ "2007","2008","2009","2010","2011" ], "#{session[:current_year]}"), :style=>"width:75px" ,:onchange=>"#{remote_function :url => {:controller => 'leaves',:action => 'emp_leave_status'},:with => "'status_year=' + value" }" %></h1>  </div>                          
+<hr> 
+<div id="change_year">
+ <%= render :partial =>"emp_leave_status"%>
+</div>  
+ 

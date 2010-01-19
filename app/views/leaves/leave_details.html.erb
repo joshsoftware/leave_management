@@ -1,0 +1,30 @@
+<br/>
+<h3><%= "#{@employee.first_name} #{@employee.last_name}"%>  Leaves Details </h3>
+<br/>
+<table width="610" border="0" cellspacing="1" cellpadding="4" bordercolor="#c5c3c3">
+	<tr>    
+    <th width="111" align="center" valign="middle">Applied On</th>
+    <th width="111" align="center" valign="middle">Start Date</th>
+    <th width="151" align="center" valign="middle">End Date</th>
+    <th width="75" align="center" valign="middle">No of Days</th>    
+    <th width="75" align="center" valign="middle">Type</th>     
+    <th width="75" align="center" valign="middle">Status</th>            	
+    <th width="151" align="center" valign="middle">Action</th>  
+  </tr>
+
+<% for leave in @leaves %>
+  <tr class="<%=cycle('even_row', 'odd_row')%>"> 	  
+	<td align="center" valign="middle"><%= leave.date %> 
+  <td align="center" valign="middle"><%= leave.start_date_of_leave %></td>
+  <td align="center" valign="middle"><%= leave.end_date_of_leave %></td>
+  <td align="center" valign="middle"><%= leave.no_of_days %></td>    
+  <td align="center" valign="middle"><%= leave.type_of_leave %></td>  
+  <td align="center" valign="middle"><%= leave.status %></td>   
+  <td align="center" valign="middle"><%= link_to 'Print Leave Form', :action => 'print', :id =>leave %></td>   
+  </tr>
+<% end %>
+</table>
+<br/>
+<div class="greenbut" style="margin-left:20px;"><%= link_to 'Back', emp_leave_status_leaves_path %></div>	
+
+ 

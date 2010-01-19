@@ -1,0 +1,50 @@
+<table width="610" border="0" cellspacing="1" cellpadding="4" bordercolor="#c5c3c3">
+  <tr>
+    <th width="54" align="center" valign="middle">ID</td>
+    <th width="141" align="center" valign="middle">Name</th>
+    <th width="83" align="center" valign="middle" colspan="2" >Privilege Leave</th>    
+    <th width="111" align="center" valign="middle" colspan="2" >Casual Leave</th>    
+    <th width="111" align="center" valign="middle" colspan="2" >Sick Leave</th>     
+    <th width="54" align="center" valign="middle"  colspan="2" >Total </th>             
+    <th width="54" align="center" valign="middle">Year </th>             
+    <th width="121" align="center" valign="middle" colspan="2">Action </th>             
+  </tr>
+  <tr>
+    <th align="center" valign="middle"> </th>
+    <th align="center" valign="middle"> </th>
+    <th align="center" valign="middle">Total </th>
+    <th align="center" valign="middle">Remain </th>
+    <th align="center" valign="middle">Total </th>            
+    <th align="center" valign="middle">Remain </th>            
+    <th align="center" valign="middle">Total </th>
+    <th align="center" valign="middle">Remain </th>
+    <th align="center" valign="middle">Total </th>            
+    <th align="center" valign="middle">Remain </th>  
+    <th align="center" valign="middle"> </th>
+    <th align="center" valign="middle"> </th>        
+    <th align="center" valign="middle"> </th>      
+  </tr>
+  <% for employee_leave_status in @employee_leave_status %>
+    <tr class="<%= cycle('even_row', 'odd_row')%>"> 	
+      <td align="center" valign="middle"><%= employee_leave_status.employee_id  %></td>
+      <td align="center" valign="middle"><%=  link_to "#{employee_leave_status.employee.first_name} #{employee_leave_status.employee.last_name}", :action => 'leave_details', :id=>employee_leave_status.employee_id %></td> 
+      <td align="center" valign="middle"><%= employee_leave_status.total_privilege %></td> 
+      <td align="center" valign="middle"><%= employee_leave_status.remain_privilege %></td> 
+      <td align="center" valign="middle"><%= employee_leave_status.total_casual %></td>
+      <td align="center" valign="middle"><%= employee_leave_status.remain_casual %></td>
+      <td align="center" valign="middle"><%= employee_leave_status.total_sick %></td>
+      <td align="center" valign="middle"><%= employee_leave_status.remain_sick %></td>
+      <td align="center" valign="middle"><%= employee_leave_status.total_privilege + employee_leave_status.total_casual + employee_leave_status.total_sick %></td>        
+      <td align="center" valign="middle"><%= employee_leave_status.remain_privilege + employee_leave_status.remain_casual + employee_leave_status.remain_sick %></td>        
+      <td align="center" valign="middle"><%= employee_leave_status.year %></td>
+      <td align="center" valign="middle"><%= link_to image_tag( "edit.png", :border => 0,:alt => "Edit" ), edit_emp_leave_status_leafe_path(employee_leave_status) %></td>  
+      <td align="center" valign="middle"><%= link_to image_tag( "delete.png", :border => 0 ), { :action => 'delete_emp_leave_status', :id => employee_leave_status }, :confirm => 'Are you sure?', :method => :post  %></td>    
+    </tr>
+  <% end  %>  
+</table>
+<br/>
+<div>
+  <div class="greenbut" style="margin-left:0px;"><%= link_to 'Add New', new_emp_leave_status_leaves_path%></div>
+  <div class="greenbut" style="margin-left:20px;"><%= link_to 'Back', leaves_path %></div>	
+</div>
+<%= will_paginate @employee_leave_status %>

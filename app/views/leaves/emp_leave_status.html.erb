@@ -1,0 +1,8 @@
+
+<div style="margin-top:10px;"><h3>Employees Leaves Status
+    <%= select_tag  "status_year", options_for_select([ "2007","2008","2009","2010","2011" ], "#{session[:current_year]}"), :style=>"width:75px;margin-left:10px;" ,:onchange=>"#{remote_function :url => emp_leave_status_leaves_path ,:with => "'status_year=' + value" }" %>
+</h3>  </div>                          
+<div id="change_year" style="margin-top:10px;">
+  <%= render :partial =>"emp_leave_status"%>
+</div>  
+

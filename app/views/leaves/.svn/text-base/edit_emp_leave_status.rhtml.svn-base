@@ -1,0 +1,25 @@
+<%= error_messages_for 'employee_leave_status' %>
+
+<h1 class="heading">Edit leave status for <%= @employee_leave_status.employee.first_name %> <%= @employee_leave_status.employee.last_name %></h1>
+<hr>
+<% form_for(:employee_leave_status, @employee_leave_status, :url=>{:action=>'update_emp_leave_status', :id => @employee_leave_status }, :html=>{:multipart=>true}) do |form| %> 
+<table  width="100%" border="0" >
+<tr>
+    <td>    
+      <div id="change_year">
+          <%= render :partial =>"edit_emp_leave_status"%>
+      </div>
+  </td>
+</tr>
+<tr>
+    <td>
+    <%= submit_tag 'Edit',:class=>"button1"%>
+   </td>
+</tr>
+<% end %>
+<tr>
+      <td>
+<%= link_to link_to image_tag("back",:border=>0), :action => 'emp_leave_status' %>
+</td>
+</tr>
+</table>

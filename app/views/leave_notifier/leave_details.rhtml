@@ -1,0 +1,15 @@
+
+<%= @employee.first_name %> <%= @employee.last_name %> has applied for leave.
+
+Leave Application Date  - <%= @leave.date.strftime("%d %B %Y") %>
+No. of Days - <%= @leave.no_of_days %>
+Leave applied - From <%= @leave.start_date_of_leave.strftime("%m/%d/%Y") %> To <%= @leave.end_date_of_leave.strftime("%m/%d/%Y") %> 
+Reason of Leave - <%= @leave.reason_of_leave %>
+Type of Leave - <%= @leave.type_of_leave %>  
+Contact Tel. no - <%= @leave.contact_no %>
+Address while on leave = <%= @leave.address %>
+
+Click on  link for change status - <%= @link %>
+
+Thanks 
+<%= @employee.first_name %> <%= @employee.last_name %>

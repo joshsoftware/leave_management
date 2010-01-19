@@ -1,0 +1,32 @@
+<br/><h3>Available Leaves </h3><br/>
+<table width="610" border="0" cellspacing="1" cellpadding="4" bordercolor="#c5c3c3">
+  <tr>
+    <th width="111" align="center" valign="middle" colspan="2" >Total</th>             
+    <th width="111" align="center" valign="middle" colspan="2" >Privilege Leave</th>    
+    <th width="111" align="center" valign="middle" colspan="2" >Casual Leave</th>    
+    <th width="111" align="center" valign="middle" colspan="2" >Sick Leave</th>     
+  </tr>
+  <tr>
+    <th align="center" valign="middle">Total</th>
+    <th align="center" valign="middle">Remain</th>
+    <th align="center" valign="middle">Total</th>            
+    <th align="center" valign="middle">Remain</th>            
+    <th align="center" valign="middle">Total</th>
+    <th align="center" valign="middle">Remain</th>
+    <th align="center" valign="middle">Total</th>            
+    <th align="center" valign="middle">Remain</th>  
+  </tr>
+  <% if @employee_leave_status %>
+    <tr class="<%= cycle('even_row', 'odd_row')%>"> 	
+      <td align="center" valign="middle"><%= @employee_leave_status.total_privilege + @employee_leave_status.total_casual + @employee_leave_status.total_sick %></td>        
+      <td align="center" valign="middle"><%= @employee_leave_status.remain_privilege + @employee_leave_status.remain_casual + @employee_leave_status.remain_sick %></td>        
+      <td align="center" valign="middle"><%= @employee_leave_status.total_privilege %></td> 
+      <td align="center" valign="middle"><%= @employee_leave_status.remain_privilege %></td> 
+      <td align="center" valign="middle"><%= @employee_leave_status.total_casual %></td>
+      <td align="center" valign="middle"><%= @employee_leave_status.remain_casual %></td>
+      <td align="center" valign="middle"><%= @employee_leave_status.total_sick %></td>
+      <td align="center" valign="middle"><%= @employee_leave_status.remain_sick %></td>
+    </tr>
+  <% end  %>  
+</table>
+

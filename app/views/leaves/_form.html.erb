@@ -1,0 +1,54 @@
+<!--[form:employee]-->
+<style type="text/css">
+  .calendar td {
+    height:10px;
+  }
+</style>
+
+<% fields_for  :leave, @leave do |form| %> 
+  <table  width="100%" border="0" cellpadding="4" cellspan="2" >    
+    <tr>
+      <td colspan=2>
+        <table>
+          <% if new %>
+            <tr><td>Leave Application Date </td><td> <%=text_field 'leave', 'date', :value => Time.now.strftime("%m/%d/%Y"), :size =>"20", :disabled=>"disabled"  %>  </td></tr>
+          <% else %>          
+            <tr><td>Leave Application Date </td><td> <%=text_field 'leave', 'date', :size =>"20", :value => @leave.date.strftime("%m/%d/%Y"), :disabled=>"disabled" %> </td></tr>
+          <% end %>
+          <tr><td>Leave Start Date </td><td>  <%= date_select('leave', 'start_date_of_leave')  %> (mm/dd/yyyy) </td></tr>
+          <tr><td>Leave End Date </td><td>  <%= date_select('leave', 'end_date_of_leave')  %> (mm/dd/yyyy) </td></tr>
+          <tr><td>No of Days </td><td>  <%= text_field 'leave', 'no_of_days','size'=>'10' %></td></tr>
+          <tr><td>Reason of Leave </td><td>  <%= text_field 'leave', 'reason_of_leave','size'=>'27' %></td></tr>
+          <tr><td>Type Of leave </td>
+            <td> <table><tr>
+                  <td><%= radio_button 'leave', 'type_of_leave', 'casual' %></td><td> Casual </td><td> <%= radio_button 'leave','type_of_leave', 'privilege' %> </td><td>Privilege </td><td><%= radio_button 'leave', 'type_of_leave','sick' %></td><td> Sick </td>
+              </tr></table>
+          </td></tr>
+          <% if new%>
+            <tr><td>Contact Tel. no  </td><td> <%= text_field 'leave', 'contact_no',:value =>@employee.mobile,'size'=>'27' %></td></tr>
+            <tr><td>Address while on Leave </td><td>  <%= text_area 'leave', 'address', :value =>@employee.current_address,:size => "35x7" %></td></tr>
+          <% else %>
+            <tr><td>Contact Tel. no  </td><td> <%= text_field 'leave', 'contact_no','size'=>'27' %></td></tr>
+            <tr><td>Address while on Leave </td><td>  <%= text_area 'leave', 'address',:size => "35x7" %></td></tr>
+          <% end %>
+          <% if current_user.role.title == "Admin" and current_user.employee.departments.first.name == "Admin"%>
+            <tr><td>Status </td>
+              <td>
+                <%= radio_button_tag 'status', 'Pending', :checked =>"checked" %> Pending 
+                <%= radio_button_tag 'status', 'Approved' %> Approved
+                <%= radio_button_tag 'status', 'Rejected' %> Rejected
+              </td>            
+            </tr>            
+          <% end %>
+        </table>
+        <b>Important Note:</b><br/>
+        1.Please mention the type of leave you wish to avail of.<br/>
+        2.In case of sick leave, 3 or more days,kindly submit your Doctor's Certificate<br/>
+        3.In case of Privileged leave for more than 3 days,kindly submit your leave application with a prior notice of 15 days.<br/>
+        4.If the Leave application is not recieved within 2 days time from the date of leave availed (in case of sick/casual leave), the same will be treated will be treated as <b>Leave Without pay.</b></br></br></br>
+      </td>
+    </tr>
+  </table>
+
+<%end%>
+<!--[eoform:employee]-->

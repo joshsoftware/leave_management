@@ -1,0 +1,23 @@
+<%= error_messages_for 'employee_leave_status' %>
+
+<br/>
+<h3>Edit leave status for <%= @employee_leave_status.employee.first_name %> <%= @employee_leave_status.employee.last_name %></h3>
+<br/>
+<% form_for(:employee_leave_status, @employee_leave_status, :url => update_emp_leave_status_leafe_path( @employee_leave_status )) do |form| %> 
+  <table  width="100%" border="0" >
+    <tr>
+      <td>    
+        <div id="change_year">
+          <table>
+            <%= render :partial =>"edit_emp_leave_status"%>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+    <br/>
+  <div>
+    <div class="greenbut" style="margin-left:0px;"><%= submit_tag 'Update', :class => "greensubbut"%></div>
+    <div class="greenbut" style="margin-left:20px;"><%= link_to 'Back', emp_leave_status_leaves_path %></div>	
+  </div>
+<% end %>

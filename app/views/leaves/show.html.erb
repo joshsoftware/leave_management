@@ -1,0 +1,24 @@
+<br/>
+<h3>Leave status for <%= @leave.employee.first_name + ' ' + @leave.employee.last_name  %></h3>
+<br/>
+
+<table width="610" border="0" cellspacing="1" cellpadding="4" bordercolor="#c5c3c3">
+  <tr class="odd_row">
+    <td colspan=2 style="vertical-align:bottom;">
+      <div class="heading1">Leave Application Made on <%= @leave.date%> </div>     
+    </td>
+  </tr>
+  <tr class="<%=cycle("odd_row","odd_row")%>"> 
+    <% for column in Leave.content_columns %> 
+      <tr class="<%=cycle("odd_row","odd_row")%>"> 
+        <th align="left" width="30%"><%= column.human_name %></th>
+        <td align="left"><%= @leave.send(column.name) %></td>
+      </tr>  
+    <% end %>
+
+    <tr>
+    <th align="center" colspan="2"><%= link_to 'Back', leaves_path %> <% if @leave.status == "Approved" or session[:rolename] == "admin" %>| <%= link_to 'Print Leave Form', print_leafe_path(@leave) %> <% end %></th>
+    </tr>
+  </table>
+
+

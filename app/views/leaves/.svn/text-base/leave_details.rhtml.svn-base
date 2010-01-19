@@ -1,0 +1,28 @@
+<h1 class="heading"><%= "#{@employee.first_name} #{@employee.last_name}"%>  Leaves Details </h1>
+<hr> 
+<table align="right" width="100%" border="0" cellpadding="4" cellspacing="1">
+	<tr class="row_header">    
+    <th width="11%" class="row_header">Leave Date</th>
+    <th width="11%" class="row_header">Leave Start Date</th>
+    <th width="15%" class="row_header">Leave End Date</th>
+    <th width="15%" class="row_header">No of Date</th>    
+    <th width="15%" class="row_header">Leave Type</th>     
+    <th width="15%" class="row_header">Leave Status</th>            	
+    <th width="15%" class="row_header"></th>  
+  </tr>
+
+<% for leave in @leaves %>
+  <tr class="<%=cycle('odd_row','even_row')%>"> 	  
+	<td><%= leave.date %> 
+  <td><%= leave.start_date_of_leave %></td>
+  <td><%= leave.end_date_of_leave %></td>
+  <td><%= leave.no_of_days %></td>    
+  <td><%= leave.type_of_leave %></td>  
+  <td><%= leave.status %></td>   
+  <td><%= link_to 'Print Leave Form', :action => 'print', :id =>leave %></td>   
+  </tr>
+<% end %>
+ <tr><td colspan="12"><a href ="javascript:history.go(-1)"><%= image_tag("back",:border=>0)%></a></td></tr>  
+</table>
+
+ 

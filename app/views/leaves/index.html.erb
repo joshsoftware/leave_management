@@ -1,0 +1,36 @@
+<% if session[:rolename] != "admin" %>
+<% else %>
+<% end %>
+
+<% if current_user.role.title == "Admin" and current_user.employee.departments.first.name == "Admin"%>
+  <div id="innerlinks"><%= link_to 'Employees Leaves Status', emp_leave_status_leaves_path %></div> 
+  <br/>
+  <h3>Employees Pending Leaves</h3>
+  <br/>
+  <%= render :partial => "emp_pending_leave" %>
+<% elsif current_user.role.title == "admin" and current_user.employee.departments.first.name != "Admin"%>
+  <div id="innerlinks">
+    <%= link_to 'Employees Leaves Status', emp_leave_status_leaves_path %>
+    <%= link_to 'Apply for New Leave', new_leave_path %>
+  </div> 
+  <br/>
+  <h3>Employees Pending Leaves</h3>
+  <br/>
+  <%= render :partial => "emp_pending_leave" %>
+  <br/> 
+  <h3>Applied Leaves List</h3>
+  <br/> 
+  <%= render :partial => "emp_leave_list" %>
+  <%= render :partial => "emp_leave_status_per_year" %>
+<% elsif current_user.role.title != "admin" %>
+  <div id="innerlinks">
+    <%= link_to 'Apply for New Leave', new_leafe_path %>
+    <%#= link_to '<label style="cursor:pointer;">Leave Policy</label>'<<image_tag( 'add.gif', :border => 0 ), policy_leaves_path %>
+  </div> 
+  <br/> 
+  <h3>Applied Leaves List</h3>
+  <br/> 
+  <%= render :partial => "emp_leave_list" %>
+  <%= render :partial => "emp_leave_status_per_year" %>
+<% end %>
+

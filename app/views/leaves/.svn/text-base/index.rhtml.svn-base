@@ -1,0 +1,34 @@
+ <% if session[:rolename] == "admin" and session[:department] == "Admin" %>
+  <h1 class="heading">Employees Pending Leaves</h1>
+ <% elsif session[:rolename] == "admin" and session[:department] != "Admin" %>
+ <h1 class="heading">Employees Pending Leaves</h1>
+ 
+ <% elsif session[:rolename] != "admin" %>
+  <h1 class="heading">Applied Leaves List</h1>
+ <% end %>
+<hr> 
+
+<% if session[:rolename] == "admin" and session[:department] == "Admin"%>
+  <div><%= link_to '<label style="cursor:pointer;">Employees Leaves Status</label>'<<image_tag( 'add.gif', :border => 0 ),{ :action => 'emp_leave_status' }, { :style => "text-decoration:none; " } %></div> 
+  <%= render :partial => "emp_pending_leave" %>
+<% elsif session[:rolename] == "admin" and session[:department] != "Admin" %>    
+  <div>
+      <%= link_to '<label style="cursor:pointer;">Employees Leaves Status</label>'<<image_tag( 'add.gif', :border => 0 ),{ :action => 'emp_leave_status' }, { :style => "text-decoration:none; " } %>
+      <%= link_to '<label style="cursor:pointer;">Apply for New Leave</label>'<<image_tag( 'add.gif', :border => 0 ),{ :action => 'new' }, { :style => "text-decoration:none; " } %>
+      <%= link_to '<label style="cursor:pointer;">Leave Policy</label>'<<image_tag( 'add.gif', :border => 0 ),{ :action => 'leave_policy' }, { :style => "text-decoration:none; " } %>
+    </div> 
+    <%= render :partial => "emp_pending_leave" %>
+    
+     <h1 class="heading">Applied Leaves List</h1><hr>
+    <%= render :partial => "emp_leave_list" %>
+    <%= render :partial => "emp_leave_status_per_year" %>
+<% elsif session[:rolename] != "admin" %>    
+    <div>
+      <%= link_to '<label style="cursor:pointer;">Apply for New Leave</label>'<<image_tag( 'add.gif', :border => 0 ),{ :action => 'new' }, { :style => "text-decoration:none; " } %>
+      <%= link_to '<label style="cursor:pointer;">Leave Policy</label>'<<image_tag( 'add.gif', :border => 0 ),{ :action => 'leave_policy' }, { :style => "text-decoration:none; " } %>
+    </div> 
+    <%= render :partial => "emp_leave_list" %>
+    <%= render :partial => "emp_leave_status_per_year" %>
+<% end %>
+
+<a href ="javascript:history.go(-1)"><%= image_tag("back",:border=>0)%></a>

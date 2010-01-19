@@ -1,0 +1,32 @@
+<table width="610" border="0" cellspacing="1" cellpadding="4" bordercolor="#c5c3c3">
+  <tr>
+    <th width="154" align="center" valign="middle">Employee Name</th>
+    <th width="100" align="center" valign="middle">Applied On</th>
+    <th width="100" align="center" valign="middle">Start Date</th>
+    <th width="100" align="center" valign="middle">End Date</th>
+    <th width="70" align="center" valign="middle"> Days</th>    
+    <th width="100" align="center" valign="middle">Type</th>     
+    <th width="100" align="center" valign="middle">Status</th>          
+    <th width="100" align="center" valign="middle" colspan="2">Actions</th>          
+  </tr>
+
+<% for leave in @leaves %>
+  <tr class="<%=cycle('even_row','odd_row')%>"> 	
+  <td align="center" valign="middle"><%= link_to "#{leave.employee.first_name} #{leave.employee.last_name}", :action => 'show', :id => leave.id %> 
+	<td align="center" valign="middle"><%= leave.date %> 
+  <td align="center" valign="middle"><%= leave.start_date_of_leave %></td>
+  <td align="center" valign="middle"><%= leave.end_date_of_leave %></td>
+  <td align="center" valign="middle"><%= leave.no_of_days %></td>    
+  <td align="center" valign="middle"><%= leave.type_of_leave %></td>  
+  <td align="center" valign="middle"><%= leave.status %></td>      
+    <% if leave.status == "Pending" or leave.status == "Rejected"%>
+      <td><%= link_to image_tag( "edit.png" , :border => 0, :alt => "Edit" ), :action => 'edit', :id => leave %></td>  
+      <td><%= link_to link_to image_tag( "delete.png", :border => 0, :alt => "Delete" ), { :action => 'destroy', :id => leave }, :confirm => 'Are you sure?', :method => :post %></td>  
+    <% else %>
+      <td></td>
+      <td></td>
+    <% end %>
+  </tr>
+<% end %> 
+</table>
+<%= will_paginate @leaves %>

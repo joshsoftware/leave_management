@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>Leave Form</title>
+<%= javascript_include_tag "prototype" %>
+<%= javascript_include_tag "calculator" %>
+     <%= stylesheet_link_tag "print.css", :media=>"print"%>
+</head>
+<body>
+<div style="font-weight: bold";>
+<div align="center" style="font-size: 24px;">
+  <u>JOSH SOFTWARE PVT.LTD. </u>
+</div>
+<br/>
+<div align="center" style="font-size: 20px;">
+<b><u>LEAVE APPLICATION FORM</u></b>
+</div>
+
+<div align="left" style="font-size: 16px;">
+Date : <%= @leave.date.strftime("%d-%m-%Y")%><br/>
+(Leave Application Made)
+</div>
+<br/><br/>
+<table align="center">
+  <tr><td style="font-weight: bold";>1 Name</td><td><%= @leave.employee.first_name %> <%= @leave.employee.last_name%></td></tr>
+  <tr><td style="font-weight: bold";>2 Designation</td><td><%= @leave.employee.title %></td></tr>
+  <tr><td style="font-weight: bold";>3 Leave Applied </td><td> From <%= @leave.start_date_of_leave.strftime("%d-%m-%Y") %> To <%= @leave.end_date_of_leave.strftime("%d-%m-%Y") %></td></tr>
+  <tr><td style="font-weight: bold";>4 No. of Days</td><td><%= @leave.no_of_days %></td></tr>
+  <tr><td style="font-weight: bold";>5 Reason of Leave</td><td><%= @leave.reason_of_leave %></td></tr>   
+  <tr>
+    <td style="font-weight: bold";>6 Type of Leave</td>     
+    <td><%= @leave.type_of_leave %></td>    
+  </tr>
+  <tr><td style="font-weight: bold";>7 Contact telephone No </td><td><%= @leave.contact_no %></td></tr>
+  <tr><td style="font-weight: bold";>8 Address while on Leave</td><td><%= @leave.address %></td></tr>
+</table>
+</div>
+<br/><br/><br/></br>
+<div>
+<table align="center"> 
+  <tr><td>..........................................</td><td>..........................................</td><td>..........................................</td></tr>
+  <tr><td> Signature of Applicant </td><td> Approved by</td><td>Authorised by</td></tr>
+</table>      
+</div>
+<br/>
+<b>Important Note:</b><br/>
+        <%= $important_note %>
+<div align="center" class="print_button"><input type="button" id=""onClick="JavaScript:window.print();" value="Print" />	</div>
+</body>
+</html>

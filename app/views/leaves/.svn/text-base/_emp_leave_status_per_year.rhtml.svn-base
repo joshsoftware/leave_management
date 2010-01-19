@@ -1,0 +1,32 @@
+
+    <table align="right" width="100%" border="0" cellpadding="4" cellspacing="1">
+    <tr><td colspan="12"><h1 class="heading">Available Leaves </h1><hr></td></tr> 
+      <tr class="row_header">
+        <th width="11%" class="row_header" colspan="2">Total Leaves </th>            
+        <th width="11%" class="row_header" colspan="2">Privilege Leave </th>
+        <th width="11%" class="row_header" colspan="2">Casual Leave </th>
+        <th width="11%" class="row_header" colspan="2">Sick Leave </th>                    
+      </tr>
+
+    <tr class="row_header">
+        <th width="11%" class="row_header">Total </th>
+        <th width="11%" class="row_header">Remain </th>
+        <th width="11%" class="row_header">Total </th>            
+        <th width="11%" class="row_header">Remain </th>            
+        <th width="11%" class="row_header">Total </th>
+        <th width="11%" class="row_header">Remain </th>
+        <th width="11%" class="row_header">Total </th>            
+        <th width="11%" class="row_header">Remain </th>            
+    </tr>
+    <tr class="odd_row"> 	    
+    <td><%= @employee_leave_status.total_sick + @employee_leave_status.total_casual + @employee_leave_status.total_privilege %></td>
+    <td><%= @employee_leave_status.remain_sick + @employee_leave_status.remain_casual + @employee_leave_status.remain_privilege %></td>
+    <td><%= @employee_leave_status.total_privilege %> 
+    <td><%= @employee_leave_status.remain_privilege %> 
+    <td><%= @employee_leave_status.total_casual %> 
+    <td><%= @employee_leave_status.remain_casual %> 
+    <td><%= @employee_leave_status.total_sick %></td>    
+    <td><%= @employee_leave_status.remain_sick %></td>    
+    </tr>
+  </table>
+  

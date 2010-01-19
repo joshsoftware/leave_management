@@ -1,0 +1,34 @@
+<table width="610" border="0" cellspacing="1" cellpadding="4" bordercolor="#c5c3c3">
+  <tr>
+    <th width="154" align="center" valign="middle">Employee Name</th>
+    <th width="100" align="center" valign="middle">Applied On</th>
+    <th width="100" align="center" valign="middle">Start Date</th>
+    <th width="100" align="center" valign="middle">End Date</th>
+    <th width="70" align="center" valign="middle"> Days</th>    
+    <th width="100" align="center" valign="middle">Type</th>     
+    <th width="100" align="center" valign="middle">Status</th>          
+    <th width="100" align="center" valign="middle">Actions</th>          
+  </tr>
+  <% for leave in @emp_leaves %>
+    <tr class="<%=cycle('odd_row','even_row')%>"> 	
+      <td align="center" valign="middle"><%= link_to "#{leave.employee.first_name} #{leave.employee.last_name}", :action => 'show', :id => leave.id %></td> 
+      <td align="center" valign="middle"><%= leave.date %></td> 
+      <td align="center" valign="middle"><%= leave.start_date_of_leave %></td>
+      <td align="center" valign="middle"><%= leave.end_date_of_leave %></td>
+      <td align="center" valign="middle"><%= leave.no_of_days %></td>    
+      <td align="center" valign="middle"><%= leave.type_of_leave %></td>  
+      <td align="center" valign="middle"><%= leave.status %></td>      
+      <% if leave.status == "Pending" or leave.status == "Rejected"%>
+        <td>
+          <div id ="accept_reject_<%= leave.id %>">
+            <%= link_to_remote( image_tag("right.jpg", :alt => "Accept", :style => "border:none; margin-left: 10px;"), :url => accept_leafe_path(leave)) %> 
+            <%= link_to_remote( image_tag("cross.jpg", :alt => "Reject", :style => "border:none; margin-left: 10px;"), :url => reject_leafe_path(leave)) %> 
+          </div>
+        </td>
+      <% end %>
+    </tr>
+  <% end %> 
+</table>
+  <% if @emp_leaves.count == 0 %> 
+    <br/><div style="margin-left:200px;"><h3> no pending leaves for now </h3></div>
+  <% end %> 

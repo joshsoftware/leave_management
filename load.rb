@@ -2,6 +2,7 @@ require 'config/environment.rb'
 require 'mysql'
 
 system('nohup ruby script/generate leave_migration &')
+sleep(5)
 system('nohup rake RAILS_ENV=production db:migrate &')
 
 mysql = Mysql.init()
